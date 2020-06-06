@@ -1,30 +1,19 @@
-let tweet = []
-let kata = ''
-var txtKata = document.getElementById("txtKata");
-var batasText = document.getElementById("batasText");
- 
 
-const onSubmit = (event) => {
-    event.preventDefault();
-    if (txtKata.value.length <= 140){
-        let txtKalimat = document.getElementById('txtKata').value;
-        tweet.push(txtKalimat)
-        let kata = ''
-        tweet.forEach(element=>{
-            kata = kata + element + '<br>';
-        })
-        s = "";
-        batasText.innerText = 140-s.length + '/140';
-        document.getElementById("txtKata").value = "";
-        document.getElementById('hasil').innerHTML = kata;
-    
+function perkalianUnik(arr){
+    total = 1;
+    for (let index = 0; index < arr.length; index++) {
+        total = total * arr[index];
     }
-    else {
-        alert('character melebihi kapasitas')
-    }
+
+    let newArr = arr.map(element=>{
+        return total / element;
+    })
+    return newArr;
 }
 
-const onChange = () => {
-    var s = txtKata.value;
-    batasText.innerText = 140-s.length + '/140';
-}
+console.log(perkalianUnik([2,4,6]));
+console.log(perkalianUnik([1,2,3,4,5]));
+console.log(perkalianUnik([1,4,3,2,5]));
+console.log(perkalianUnik([1,3,3,1]));
+console.log(perkalianUnik([2,1,8,10,2]));
+
