@@ -1,30 +1,35 @@
-let tweet = []
-let kata = ''
-var txtKata = document.getElementById("txtKata");
-var batasText = document.getElementById("batasText");
- 
 
-const onSubmit = (event) => {
-    event.preventDefault();
-    if (txtKata.value.length <= 140){
-        let txtKalimat = document.getElementById('txtKata').value;
-        tweet.push(txtKalimat)
-        let kata = ''
-        tweet.forEach(element=>{
-            kata = kata + element + '<br>';
-        })
-        s = "";
-        batasText.innerText = 140-s.length + '/140';
-        document.getElementById("txtKata").value = "";
-        document.getElementById('hasil').innerHTML = kata;
-    
+function targetTerdekat(arr){
+    let state = ' ';
+    let awal = 0;
+    let akhir = 0;
+    let dif = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] != ' '){
+            state = arr[i];
+            awal = i;
+            for (let j = i; j < arr.length; j++){
+                if (arr[j] != state && arr[j] != ' '){
+                    akhir = j;
+                    break;
+                }
+                else if (arr[j] === state){
+                    awal = j;
+                }
+            }
+
+            break;
+        }
+    }
+    if (akhir === 0){
+        dif = 0;
     }
     else {
-        alert('character melebihi kapasitas')
+        dif = akhir - awal;
     }
+    return dif;
 }
 
-const onChange = () => {
-    var s = txtKata.value;
-    batasText.innerText = 140-s.length + '/140';
-}
+console.log(targetTerdekat([' ',' ','o',' ',' ','x',' ','x']));
+console.log(targetTerdekat([' ','o','o',' ',' ','x',' ','x']));
+console.log(targetTerdekat([' ','x','x','o',' ',' ',' ',' ']));
